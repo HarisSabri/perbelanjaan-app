@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perbelanjaan Saya</title>
+    <link rel="manifest" href="manifest.json">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        input, button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Selamat Datang ke Perbelanjaan Saya</h1>
+    <p>Aplikasi ini membantu anda menguruskan perbelanjaan harian.</p>
+
+    <h2>Tambah Perbelanjaan</h2>
+    <input type="text" id="namaItem" placeholder="Nama Item">
+    <input type="number" id="hargaItem" placeholder="Harga (RM)">
+    <button onclick="tambahPerbelanjaan()">Tambah</button>
+
+    <h2>Senarai Perbelanjaan</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Harga (RM)</th>
+            </tr>
+        </thead>
+        <tbody id="senaraiPerbelanjaan"></tbody>
+    </table>
+
+    <script>
+        function tambahPerbelanjaan() {
+            let namaItem = document.getElementById("namaItem").value;
+            let hargaItem = document.getElementById("hargaItem").value;
+
+            if (namaItem === "" || hargaItem === "") {
+                alert("Sila isi semua maklumat!");
+                return;
+            }
+
+            let table = document.getElementById("senaraiPerbelanjaan");
+            let row = table.insertRow();
+            row.insertCell(0).textContent = namaItem;
+            row.insertCell(1).textContent = "RM " + parseFloat(hargaItem).toFixed(2);
+
+            // Kosongkan input
+            document.getElementById("namaItem").value = "";
+            document.getElementById("hargaItem").value = "";
+        }
+    </script>
+
+</body>
+</html>
